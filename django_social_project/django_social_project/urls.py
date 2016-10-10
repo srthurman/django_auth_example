@@ -1,3 +1,6 @@
+from django.conf.urls import url, include
+from django.contrib import admin
+from django_social_app import views
 """django_social_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,9 +16,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url('', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^$', views.login),
+    url(r'^home/$', views.home),
+    url(r'^logout/$', views.logout),
 ]
